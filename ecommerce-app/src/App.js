@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DashBoard from './pages/Dashboard';
 import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Checkout from './pages/Checkout';
 import './App.css';
-import bgImage from './assets/bag.jpg'; 
+import bgImage from './assets/bag.jpg';
 
 function App() {
   return (
@@ -18,23 +18,22 @@ function App() {
         backgroundRepeat: 'no-repeat',
       }}
     >
-
-    <Router>
-      <Routes>
-        <Route path="/" element={<DashBoard />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<CheckoutWrapper />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<DashBoard />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<CheckoutWrapper />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
 
-// ✅ Custom wrapper to control Checkout access
+// ✅ Wrapper to protect the Checkout route
 const CheckoutWrapper = () => {
-  const isAuthenticated = localStorage.getItem('user');
+  const isAuthenticated = localStorage.getItem('user') || localStorage.getItem('loggedInUser');
 
   if (!isAuthenticated) {
     alert('Please login or register first to proceed to checkout.');

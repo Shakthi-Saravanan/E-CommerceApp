@@ -67,7 +67,11 @@ input, button {
 }
 
 button {
+
   background-color: #114fd4;
+
+  background-color: #2563eb;
+
   color: white;
   border: none;
   cursor: pointer;
