@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Navbar from '../components/Navbar'; 
 import { useNavigate } from 'react-router-dom';
 
 
@@ -85,6 +86,8 @@ const Register = () => {
   };
 
   return (
+    <>
+    <Navbar /> {/* ✅ Show navbar on top */}
     <div style={containerStyle}>
       <h2 style={{ textAlign: 'center' }}>Register</h2>
       <input
@@ -107,6 +110,7 @@ const Register = () => {
       <button style={buttonStyle} onClick={handleRegister}>Register</button>
       <p style={messageStyle}>{msg}</p>
     </div>
+    </>
   );
 };
 
