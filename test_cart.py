@@ -115,14 +115,14 @@ def test_cart_page():
         except NoSuchElementException:
             test_status = False
     except Exception as e:
-        print("🚨 Test failed due to exception:", str(e))
+        print("Test failed due to exception:", str(e))
         test_status = False
 
     final_url = driver.current_url
     write_html_report("Cart Add + Remove", test_status, alert_texts, final_url)
     driver.quit()
 
-    assert test_status, "❌ Cart test failed!"
+    assert test_status, "Cart test failed!"
 
 # Run test directly
 if __name__ == "__main__":

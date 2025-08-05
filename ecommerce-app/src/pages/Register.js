@@ -3,37 +3,12 @@ import axios from 'axios';
 import Navbar from '../components/Navbar'; 
 import { useNavigate } from 'react-router-dom';
 
-
 const Register = () => {
   const [user, setUser] = useState({ username: '', email: '', password: '' });
   const [msg, setMsg] = useState('');
   const navigate = useNavigate();
 
-  const validateForm = () => {
-    const { username, email, password } = user;
-
-    if (!username || !email || !password) {
-      alert('All fields are required.');
-      return false;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alert('Please enter a valid email address.');
-      return false;
-    }
-
-    if (password.length < 6) {
-      alert('Password must be at least 6 characters long.');
-      return false;
-    }
-
-    return true;
-  };
-
   const handleRegister = async () => {
-    if (!validateForm()) return;
-
     try {
       const res = await axios.post('http://localhost:5000/register', user);
       const message = res.data.message;
@@ -87,29 +62,32 @@ const Register = () => {
 
   return (
     <>
-    <Navbar /> {/* ✅ Show navbar on top */}
-    <div style={containerStyle}>
-      <h2 style={{ textAlign: 'center' }}>Register</h2>
-      <input
-        style={inputStyle}
-        placeholder="Username"
-        onChange={e => setUser({ ...user, username: e.target.value })}
-      />
-      <input
-        style={inputStyle}
-        type="email"
-        placeholder="Email"
-        onChange={e => setUser({ ...user, email: e.target.value })}
-      />
-      <input
-        style={inputStyle}
-        type="password"
-        placeholder="Password"
-        onChange={e => setUser({ ...user, password: e.target.value })}
-      />
-      <button style={buttonStyle} onClick={handleRegister}>Register</button>
-      <p style={messageStyle}>{msg}</p>
-    </div>
+      <Navbar />
+      <div style={containerStyle}>
+        <h2 style={{ textAlign: 'center' }}>Register</h2>
+        <input
+          style={inputStyle}
+          placeholder="Username"
+          required
+          onChange={e => setUser({ ...user, username: e.target.value })}
+        />
+        <input
+          style={inputStyle}
+          type="email"
+          placeholder="Email"
+          required
+          onChange={e => setUser({ ...user, email: e.target.value })}
+        />
+        <input
+          style={inputStyle}
+          type="password"
+          placeholder="Password"
+          required
+          onChange={e => setUser({ ...user, password: e.target.value })}
+        />
+        <button style={buttonStyle} onClick={handleRegister}>Register</button>
+        <p style={messageStyle}>{msg}</p>
+      </div>
     </>
   );
 };
