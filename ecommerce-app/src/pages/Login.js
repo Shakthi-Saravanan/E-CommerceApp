@@ -14,11 +14,26 @@ const Login = () => {
     }
 
     axios.post('http://localhost:5000/login', credentials)
-      .then(res => {
+      .then(async res => {
         // Save user info to localStorage
         localStorage.setItem('user', JSON.stringify({ username: res.data.username }));
         alert('Login successful');
-        navigate('/checkout'); // or wherever you'd like
+
+        await axios.post('http://localhost:5000/log_login', {
+        username: res.data.username,
+        timestamp: new Date().toISOString()
+      });
+
+        navigate('/checkout'); 
+      
+        // Redirect to admin if the user is admin
+        if (res.data.username === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/checkout');
+        }
+
+        
       })
       .catch(err => {
         if (err.response && err.response.status === 401) {
@@ -28,6 +43,8 @@ const Login = () => {
           console.error('Login error:', err);
         }
       });
+
+      
   };
 
   const containerStyle = {

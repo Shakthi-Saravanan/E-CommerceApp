@@ -4,6 +4,7 @@ import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Checkout from './pages/Checkout';
+import Admin from './pages/admin';
 import './App.css';
 import bgImage from './assets/bag.jpg';
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<CheckoutWrapper />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/register" element={<Register />} />
         </Routes>
       </Router>

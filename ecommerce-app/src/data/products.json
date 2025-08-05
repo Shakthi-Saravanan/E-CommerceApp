@@ -1,8 +1,0 @@
-[
-  { "id": 1, "name": "iPhone 16", "price": 69999, "image":"/images/smartphone.jpg" },
-  { "id": 2, "name": "Boat Airdopes 141 ANC", "price": 1199, "image": "/images/headphones.jpg" },
-  { "id": 3, "name": "Dell G15", "price": 74999, "image": "/images/laptop.jpg" },
-  { "id": 4, "name": "MacBook Air", "price": 102999, "image": "/images/mac.jpg" },
-  { "id": 5, "name": "Airpods Pro 2", "price": 24999, "image": "/images/aipodspro.png" },
-  { "id": 6, "name": "PlayStation 4", "price": 34999, "image": "/images/ps4.jpg" }
-]

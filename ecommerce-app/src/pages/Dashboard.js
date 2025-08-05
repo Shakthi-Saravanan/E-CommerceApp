@@ -1,9 +1,19 @@
-import React from 'react';
-import Navbar from '../components/Navbar'; // Adjust path if needed
-import products from '../data/products.json';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Navbar from '../components/Navbar';
 
 const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem('user'));
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/products')
+      .then(res => setProducts(res.data))
+      .catch(err => {
+        console.error('Error fetching products:', err);
+        alert('Could not fetch products.');
+      });
+  }, []);
 
   const addToCart = (product) => {
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -14,16 +24,11 @@ const Dashboard = () => {
 
   return (
     <>
-      <Navbar /> {/* ✅ Show navbar on top */}
-
+      <Navbar />
       <div className="container" style={{ padding: '20px' }}>
-        {user ? (
-          <h2>Hello, {user.username} 👋</h2>
-        ) : (
-          <h2>Welcome to EZ Kart!</h2>
-        )}
-
+        <h2>{user ? `Hello, ${user.username} 👋` : 'Welcome to EZ Kart!'}</h2>
         <h3>Our Products</h3>
+
         <div className="product-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
           {products.map(product => (
             <div
